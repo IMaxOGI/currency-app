@@ -1,21 +1,24 @@
 import React from 'react';
-import Header from './components/Header';
-import CurrencyDisplay from './components/CurrencyDisplay';
+import CurrencyCard from './components/CurrencyCard';
 import CurrencyConverter from './components/CurrencyConverter';
-import AddFunds from './components/AddFunds';
+import AddCurrencyCard from './components/AddCurrencyCard';
 import TransactionHistory from './components/TransactionHistory';
-import TimeZoneSelector from './components/TimeZoneSelector';
 
 const App: React.FC = () => {
+    // You should replace this with the list of currencies from your store
+    const currencies = ['USD', 'CAD'];
+
     return (
         <div className="bg-gray-900 text-white min-h-screen">
-            <Header />
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {currencies.map(currency => (
+                    <CurrencyCard key={currency} currency={currency} />
+                ))}
+                <AddCurrencyCard />
+            </div>
             <div className="p-6">
-                <CurrencyDisplay />
                 <CurrencyConverter />
-                <AddFunds />
                 <TransactionHistory />
-                <TimeZoneSelector />
             </div>
         </div>
     );
